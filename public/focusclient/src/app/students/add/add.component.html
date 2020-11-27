@@ -1,0 +1,57 @@
+<h2>Add New Student</h2>
+<form [formGroup]="studentForm" (ngSubmit)="submitForm()" novalidate>
+  <div class="form-group">
+    <label for="first_name">First Name</label>
+    <input type="text" formControlName="first_name" id="first_name" class="form-control" placeholder="First Name">
+    <small
+      class="form-text text-danger"
+      *ngIf="submitted && formControl.first_name.errors">
+      <span *ngIf="formControl.first_name.errors.required">First Name is required</span>
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="last_name">Last Name</label>
+    <input type="text" formControlName="last_name" id="last_name" class="form-control" placeholder="Last Name">
+    <small
+      class="form-text text-danger"
+      *ngIf="submitted && formControl.last_name.errors">
+      <span *ngIf="formControl.last_name.errors.required">Last Name is required</span>
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="student_class">Select Class</label>
+    <select class="form-control" id="student_class" formControlName="class_id">
+      <option *ngFor="let class of classes" value="{{ class.id }}">{{ class.name }}</option>
+    </select>
+    <small
+      class="form-text text-danger"
+      *ngIf="submitted && formControl.class_id.errors">
+      <span *ngIf="formControl.class_id.errors.required">Student Class is required</span>
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label>Date of Birth</label>
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="date_of_birth" ngbDatepicker
+             [footerTemplate]="footerTemplate" #d="ngbDatepicker" [maxDate]="today" readonly>
+      <div class="input-group-append">
+        <a class="btn btn-outline-secondary calendar" (click)="d.toggle()"></a>
+      </div>
+      <ng-template #footerTemplate>
+        <hr class="my-0">
+        <button class="btn btn-primary btn-sm m-2 float-left" (click)="formControl.date_of_birth = today; d.close()">Today</button>
+        <button class="btn btn-secondary btn-sm m-2 float-right" (click)="d.close()">Close</button>
+      </ng-template>
+    </div>
+    <small
+      class="form-text text-danger"
+      *ngIf="submitted && formControl.date_of_birth.errors">
+      <span *ngIf="formControl.date_of_birth.errors.required">Student Class is required</span>
+    </small>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

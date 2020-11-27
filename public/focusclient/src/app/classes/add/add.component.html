@@ -1,0 +1,41 @@
+<h2>Add New Class</h2>
+<form [formGroup]="classForm" (ngSubmit)="submitForm()" novalidate>
+  <div class="form-group">
+    <label for="class_code">Class Code</label>
+    <input type="text" formControlName="code" id="class_code" class="form-control" placeholder="Class Code">
+    <small
+      class="form-text text-danger"
+      *ngIf="submitted && formControl.code.errors">
+      <span *ngIf="formControl.code.errors.required">Class code is required</span>
+      <span *ngIf="formControl.code.errors.cannotContainSpace">Class code should be without spaces</span>
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="class_name">Class Name</label>
+    <input type="text" formControlName="name" id="class_name" class="form-control" placeholder="Class Name">
+    <small
+      class="form-text text-danger"
+      *ngIf="submitted && formControl.name.errors">
+      Class name is required & should be without spaces
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="max_students">Maximum Students</label>
+    <input type="number" formControlName="max_students" max="10" min="1" id="max_students" class="form-control" placeholder="Maximum Students">
+    <small
+      class="form-text text-danger"
+      *ngIf="submitted && formControl.max_students.errors">
+      <span *ngIf="formControl.max_students.errors.required">Class Maximum Students is required</span>
+      <span *ngIf="formControl.max_students.errors?.max">Class Maximum Students should not greater than 10</span>
+      <span *ngIf="formControl.max_students.errors?.min">Class Maximum Students should not less than 1</span>
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="class_description">Class Description</label>
+    <textarea id="class_description" formControlName="description" class="form-control" placeholder="Class Description"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

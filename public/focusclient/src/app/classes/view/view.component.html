@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-header">
+    Class Details
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ class.name }} <span class="badge badge-primary">Opened</span>
+    </h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ class.code }}</h6>
+    <p class="card-text">{{ class.description }}</p>
+    <h5 class="card-title text-primary">
+      Students List <span class="badge badge-primary badge-pill">{{ class.students.length }}</span>
+    </h5>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let student of class.students" class="list-group-item">{{ student.first_name +' '+ student.last_name}}</li>
+    </ul>
+  </div>
+</div>
