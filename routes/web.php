@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'VideoUploadersController@index')->name('home');
+Route::post('/upload-file', 'VideoUploadersController@fileUpload')->name('fileUpload');
+Route::get('play_video/{id}', 'VideoUploadersController@getVideoById')->name('play_video');
